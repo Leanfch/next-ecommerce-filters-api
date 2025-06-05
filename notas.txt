@@ -1,0 +1,7 @@
+Cosas por hacer:
+
+- Visualizar dos páginas diferentes (Home, Productos)
+- Conexion API de productos
+- Ver todos los productos
+- Filtrar por categorias
+- Filtro en la misma página de Productos o distintas páginas por categoria?
