@@ -13,9 +13,13 @@ export default function ProductList() {
 		async function loadProducts() {
 			setIsLoading(true);
 			setError(null);
-			try {
-				const data = await getProducts();
-				setProducts(data);
+            try {
+                const allProducts = await getProducts();
+                const validCategories = ["men's clothing", "jewelery", "electronics", "women's clothing"];
+                const filteredProducts = allProducts.filter(product =>
+                validCategories.includes(product.category)
+                );
+                setProducts(filteredProducts);
 			} catch (err) {
 				if (err instanceof Error) {
 					setError(err.message);
@@ -44,6 +48,7 @@ export default function ProductList() {
 		<ul className="grid grid-cols-7 gap-2 bg-amber-300">
 			{products.map((product: ProductInterface) => (
 				<li key={product.id} className="bg-gray-100 p-2 rounded-xl text-center flex flex-col">
+                    <h2 className="font-bold text-3xl leading-6">{product.category}</h2>
                     <div className="w-3xs">
                         <Image src={product.image} alt={"Picture" + product.title} width={120} height={1} className="w-28 h-auto"/>
                     </div>
