@@ -1,21 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { ProductInterface } from "../types/apiType";
-
-async function getProducts(): Promise<ProductInterface[]> {
-	try {
-		const res = await fetch("https://fakestoreapi.com/products");
-
-		if (!res.ok) {
-			throw new Error("Error fetching the products data");
-		}
-		const data: ProductInterface[] = await res.json();
-		return data;
-	} catch (error) {
-		console.error("Error:", error);
-		return [];
-	}
-}
+import getProducts from "../data/getProducts";
+import Image from "next/image";
 
 export default function ProductList() {
 	const [products, setProducts] = useState<ProductInterface[]>([]);
@@ -54,14 +41,14 @@ export default function ProductList() {
 	}
 
 	return (
-		<ul>
+		<ul className="grid grid-cols-7 gap-2 bg-amber-300">
 			{products.map((product: ProductInterface) => (
-				<li key={product.id}>
-                    <h2>
-                        {product.title}
-                    </h2>
-                    <h3>{product.category}</h3>
-                    <p>{product.description}</p>
+				<li key={product.id} className="bg-gray-100 p-2 rounded-xl text-center flex flex-col">
+                    <div className="w-3xs">
+                        <Image src={product.image} alt={"Picture" + product.title} width={120} height={1} className="w-28 h-auto"/>
+                    </div>
+                    <h2 className="font-bold text-xl leading-6">{product.title}</h2>
+                    <p className="text-sm text-gray-600">{product.description}</p>
                 </li>
 			))}
 		</ul>
