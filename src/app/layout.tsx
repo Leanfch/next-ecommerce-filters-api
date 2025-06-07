@@ -33,22 +33,22 @@ export default async function RootLayout({
 
 	return (
 		<html lang="en">
-			<body>
+			<body className="min-h-dvh flex flex-col">
 				<header>
 					<nav className="bg-amber-500 p-10 flex justify-center gap-5">
 						<Link
 							href="/"
-							className="text-xl font-bold p-2 bg-amber-600 hover:bg-amber-700 hover:px-3 rounded-md transition-all"
+							className="text-xl font-bold p-2 bg-amber-600 hover:bg-amber-700 rounded-md transition-all"
 						>
 							Home
 						</Link>
 
 						<div className="relative group">
-							<button className="text-xl font-bold p-2 bg-amber-600 hover:bg-amber-700 rounded-md transition-all">
+							<button className="text-xl font-bold p-2 bg-amber-600 hover:bg-amber-700 rounded-md hover:rounded-bl-none transition-all">
 								Categories
 							</button>
 							{/* Contenedor del menú desplegable */}
-							<div className="absolute hidden group-hover:block bg-amber-600 rounded-md shadow-lg z-10 w-56">
+							<div className="absolute hidden group-hover:block bg-amber-600 rounded-b-md rounded-tr-md shadow-lg z-10 w-56">
 								{/* 4. Mapeamos el array de categorías para crear los Links */}
 								{categories.map((category) => (
 									<Link
@@ -65,6 +65,9 @@ export default async function RootLayout({
 					</nav>
 				</header>
 				<main>{children}</main>
+                <footer className="bg-amber-950 py-2 mt-auto">
+                    <p className="text-white font-bold text-center">All rights reserved 2025 &copy; - Made by <Link href='https://github.com/leanfch' target="_blank" className="text-amber-300 underline">Chapa</Link></p>
+                </footer>
 			</body>
 		</html>
 	);
